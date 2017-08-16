@@ -1,17 +1,14 @@
-
-
-
 #class Config(object):
 
 encoder_layers = [60, 60, 60, 60]
 
+# epoch_pretrain_times = 60 # for others
+epoch_ae_pretrain_times = 500 # for ksc only
+# SAE_train_times =100 # for others
+epoch_sae_pretrain_times =10000 # for ksc only
+# epoch_train_times = 10000  # for others
+epoch_final_train_times = 100000 # for ksc only
 
-# epoch_pretrain_times = 60
-epoch_ae_pretrain_times = 500
-# SAE_train_times =100
-epoch_sae_pretrain_times =1000
-# epoch_train_times = 10000  # fro salinas
-epoch_final_train_times = 10000
 #au_epoch = 10
 #tied_weights = True
 batch_size = 100
@@ -20,13 +17,6 @@ learn_rate = 0.01
 # final_learn_rate = 0.01
 final_learn_rate = 0.0001
 set_ratio = [6, 2, 2]
-
-
-#NUM_CLASSES = 10
-#IMAGE_PIXELS = 103 # a variable later
-#spectral_log = 'spectral_log'
-#spatial_log='spatial_log'
-#mix_feature_log = 'mix_log'
 
 max_steps = 100000
 
