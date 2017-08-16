@@ -8,14 +8,14 @@ from Data import fill_feed_dict
 import os
 
 
-def reuse_layer(temp_img_placeholder, layer_units,trans_function=tf.nn.softplus):
+def reuse_layer(temp_img_placeholder, layer_units,transfer_function=tf.nn.softplus):
 
         feature_dim = int(temp_img_placeholder.shape[1])
         weights = tf.get_variable('w1', shape=[feature_dim, layer_units],
                                   initializer=tf.random_normal_initializer(mean=0, stddev=1.0))
         biases = tf.Variable(tf.zeros([layer_units],dtype=tf.float32),name='b1')
         rc = tf.add(tf.matmul(temp_img_placeholder, weights) , biases)
-        h = trans_function(rc)
+        h = transfer_function(rc)
         print('operation name of reuse layer:%s'%h)
 
         return h,rc
@@ -23,7 +23,7 @@ def reuse_layer(temp_img_placeholder, layer_units,trans_function=tf.nn.softplus)
 
 class new_SAE(object):
 
-    def __init__(self,input_dim,encoder_shape,transfer_function=tf.nn.softplus,optimizer = tf.train.AdamOptimizer()):
+    def __init__(self,input_dim,encoder_shape,all_data_num,transfer_function=tf.nn.softplus,optimizer = tf.train.AdamOptimizer(),):
 
         self.encoder_W = []
         self.encoder_b = []
@@ -33,16 +33,15 @@ class new_SAE(object):
         self.encoder_layers=[]
         self.encoder_cost = []
         self.decoder_weights = []
-        self.final_summayrs =[]
-        self.sae_summayrs = []
+        self.all_summayrs =[]
+        self.all_data_num = all_data_num
 
         self.transfer_function=transfer_function
         self.optimizer = optimizer
 
         # input
-        self.x = tf.placeholder(tf.float32,[self.labels_dim,self.feature_dim]) ## important to save real data
-        self.y = tf.placeholder(tf.float32,[self.labels_dim]) ## important to save real data
-
+        self.x = tf.placeholder(tf.float32,[None,self.feature_dim]) ## important to save real data
+        self.y = tf.placeholder(tf.float32,[None]) ## important to save real data
 
         temp_input_dim = self.feature_dim
         temp_img_placeholder = self.x
@@ -70,7 +69,7 @@ class new_SAE(object):
             with tf.variable_scope('encode_layer{0}'.format(i),reuse=True):
 
                 temp_img_placeholder, encoders_reconstruction = \
-                    reuse_layer(temp_img_placeholder,layer_units=encoder_shape[i],trans_function=self.transfer_function)
+                    reuse_layer(temp_img_placeholder,layer_units=encoder_shape[i],transfer_function=self.transfer_function)
 
                 self.encoder_h.append(temp_img_placeholder)
 
@@ -99,15 +98,16 @@ class new_SAE(object):
 
         self.reconstruction = h
 
-        #cost
+        # #-------------SAE cost------------------------------------------------------------------------------
         #self.cost = tf.reduce_mean(tf.sqrt(tf.square(tf.subtract(self.reconstruction,self.x))))
         self.cost = 0.5 * tf.reduce_mean(tf.pow(tf.subtract(self.reconstruction, self.x), 2.0))
 
         #train
         self.optimizer = self.optimizer.minimize(self.cost)
+        # #-------------SAE cost------------------------------------------------------------------------------
 
 
-        # final model cost
+        # #-------------final model cost----------------------------------------------------------------------
         cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
             labels=tf.cast(self.y,tf.int32), logits=self.encoders_reconstruction, name='xentropy')
 
@@ -118,14 +118,16 @@ class new_SAE(object):
 
         # Set the trainning objection to minimize loss
         self.optimizer_final = optimizer_final.minimize(self.cost_final)
+        # #-------------final model cost-----------------------------------------------------------------------
 
-        # correct numbers
-        correct = tf.nn.in_top_k(self.encoders_reconstruction, tf.cast(self.y,tf.int32),
-                                 1)  # if the maxmum k value could match labels, return True
+
+        # #-------------percision-----------------------------------------------------------------------
+        # if the maxmum k value could match labels, return True
+        correct = tf.nn.in_top_k(self.encoders_reconstruction, tf.cast(self.y,tf.int32),1)
+
         self.correct = tf.reduce_sum(tf.cast(correct, tf.int32))
 
-fdasfsda
-
+        self.precision = self.correct/self.all_data_num
 
         # #----------tensorboard-------------------------------------------------
         with tf.name_scope('sae_summary') as sae_smry:
@@ -138,12 +140,12 @@ fdasfsda
             # im_w = tf.expand_dims(tf.expand_dims(im_w, 0), -1)
             # self.sae_hist_img_weight = tf.summary.image('AE_weights', im_w)
 
-            self.sae_summayrs.append(self.sae_loss_scaler)
+            self.all_summayrs.append(self.sae_loss_scaler)
 
             # self.sae_summayrs.append(self.sae_hist)
             # self.sae_summayrs.append(self.sae_img_weight)
 
-            self.sae_merged = tf.summary.merge(self.sae_summayrs,sae_smry)
+            self.sae_merged = tf.summary.merge(self.all_summayrs,sae_smry)
 
             # tf.summary.histogram('AE_weights',self.weights['b1'])
 
@@ -163,15 +165,32 @@ fdasfsda
             #
             # im_w = self.weights['w1'] * 100
             # im_w = tf.expand_dims(tf.expand_dims(im_w, 0), -1)
-            # self.sae_hist_img_weight = tf.summary.image('AE_weights', im_w)
+            # self.sae_hist_img_weight = tf.image('AE_weights', im_w)
 
-            self.final_summayrs.append(self.final_loss_scaler)
+            self.all_summayrs.append(self.final_loss_scaler)
 
             # self.sae_summayrs.append(self.sae_hist)
             # self.sae_summayrs.append(self.sae_img_weight)
 
-            self.final_merged = tf.summary.merge(self.final_summayrs, f_smry)
+            self.final_merged = tf.summary.merge(self.all_summayrs, f_smry)
 
+            # #----------tensorboard-------------------------------------------------
+        with tf.name_scope('precision_train') as pt:
+
+            precision = tf.summary.scalar('precision_train', self.correct/self.all_data_num)
+            self.all_summayrs.append(precision)
+            self.precision_train_merged = tf.summary.merge(self.all_summayrs, pt)
+
+            # #----------tensorboard-------------------------------------------------
+        with tf.name_scope('precision_valid') as pv:
+            precision = tf.summary.scalar('precision_valid', self.correct / self.all_data_num)
+            self.all_summayrs.append(precision)
+            self.precision_valid_merged = tf.summary.merge(self.all_summayrs, pv)
+
+        with tf.name_scope('precision_test') as pte:
+            precision = tf.summary.scalar('precision_test', self.correct / self.all_data_num)
+            self.all_summayrs.append(precision)
+            self.precision_test_merged = tf.summary.merge(self.all_summayrs, pte)
 
 
     def transform(self,feed_dict,layer_idx,sess):
@@ -223,7 +242,6 @@ fdasfsda
                 writer.add_summary(summary_, step)
                 # saver.save(sess, os.path.join(ckpt_dir, 'pretrain_SAE.ckpt'), global_step=step)
 
-
     def train_SAE(self,feed_dict,sess):
         cost, op = sess.run((self.cost,self.optimizer), feed_dict=feed_dict)  # the same feature dim
         return cost, op
@@ -236,8 +254,6 @@ fdasfsda
     def train_final_model(self,feed_dict,sess):
 
         return sess.run([self.cost_final,self.optimizer_final],feed_dict=feed_dict)
-
-
 
 
 if __name__ == '__main__':

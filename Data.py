@@ -3,7 +3,7 @@ import numpy as np
 import Config
 import scipy.io as sio
 from sklearn.decomposition import PCA
-
+import matplotlib.pyplot as plt
 
 class Data():
 
@@ -39,28 +39,47 @@ class Data():
 
         self.split_mask = self.get_split_mask()
 
-
-        ##-----------------------
-        temp = self.split_mask.tolist()
-        a=0
-        for i in range(len(temp)):
-            a+=temp[i].count('0')
-        print('0 pixels in split_mask: %d'%a)
-        ##------------------------
-
+        # ##-----------------------
+        # temp = self.split_mask.tolist()
+        # a=0
+        # for i in range(len(temp)):
+        #     a+=temp[i].count(0)
+        # print('unlabel pixels in split_mask: %d'%a)
+        # ##------------------------
 
         # remove unlabel pixels
-        self.split_mask[gnd_img==0]= '0'
-
-
-        ##------------------------
+        self.split_mask[gnd_img==0]= '-255'
         temp = self.split_mask.tolist()
         a=0
         for i in range(len(temp)):
-            a+=temp[i].count('0')
-        print('0 pixels after remove unlabel pixels : %d'%a)
+            a+=temp[i].count('-255')
+        print('unlabel pixels : %d'%a)
+        print(gnd_img[gnd_img == 0].size)
+
+        self.cmap = np.asarray(
+            [[0, 0, 0], [255, 255, 255], [255, 0, 0], [0, 255, 0], [0, 0, 255],
+             [255, 255, 0], [0, 255, 255], [255, 0, 255], [192, 192, 192],
+             [128, 128, 128], [128, 0, 0], [128, 128, 0], [0, 128, 0], [128, 0, 128],
+             [0, 128, 128], [0, 0, 128], [255, 215, 0]],
+            dtype='int32')
+
+        self.draw_samples()
         ##------------------------
 
+
+    def draw_samples(self):
+
+        temp_img = np.zeros([self.gnd_img.shape[0],self.gnd_img.shape[1],3])
+        temp_img[self.split_mask=='-255']= self.cmap[0]
+        temp_img[self.split_mask == 'train'] = self.cmap[1]
+        temp_img[self.split_mask == 'valid'] = self.cmap[2]
+        temp_img[self.split_mask == 'test'] = self.cmap[3]
+
+        plt.figure(1)
+        ax1 = plt.subplot(131)
+        plt.sca(ax1)
+        plt.title('samples of 3 data set')
+        plt.imshow(np.array(temp_img))
 
     def scale_to_unit_interval(self,ndar, eps=1e-8):
         """ Scales all values in the ndarray ndar to be between 0 and 1 """

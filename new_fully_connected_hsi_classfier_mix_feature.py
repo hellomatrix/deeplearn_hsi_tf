@@ -8,27 +8,6 @@ import os.path
 from Data import fill_feed_dict
 
 
-def do_eval(sess,
-            eval_correct,
-            images_placeholder,
-            labels_placeholder,
-            data_set
-            ):
-
-    true_count= 0
-
-    steps_per_epoch = data_set._num_examples // Config.batch_size
-    num_examples = steps_per_epoch*Config.batch_size # get the the int times of batch size
-
-    for step in range(steps_per_epoch):
-
-        feed_dict = fill_feed_dict(data_set, images_placeholder, labels_placeholder)
-        true_count += sess.run(eval_correct,feed_dict=feed_dict)
-
-    precision = float(true_count)/num_examples
-    print('NUm examples:%d Num correct:%d Precision @1:%0.04f' %(num_examples,true_count,precision))
-
-
 def run_trainning():
 
     # # ## data 1------------------------
@@ -36,11 +15,11 @@ def run_trainning():
     # # ## data 1------------------------
 
     ## data 2------------------------
-    dataname = Config.ksc
+    # dataname = Config.ksc
     ## data 2------------------------
 
     ## data 2------------------------
-    # dataname = Config.Salinas
+    dataname = Config.Salinas
     ## data 2------------------------
 
     # log
@@ -75,7 +54,8 @@ def run_trainning():
             epoch_size = data_sets[0].shape[0]
 
             # int
-            sae = new_SAE(input_dim, encoder_shape=Config.encoder_layers)
+            sae = new_SAE(input_dim, encoder_shape=Config.encoder_layers,
+                          all_data_num=train_data._num_examples, transfer_function=tf.nn.sigmoid)
             pre_trian_saver = tf.train.Saver()  # after graph, sometime with variable name ,so so
             fianl_saver = tf.train.Saver()  # after graph, sometime with variable name ,so so
 
@@ -103,62 +83,61 @@ def run_trainning():
 
                     duration = time.time() - start_time
 
-                    if step % 500 == 0:
+                    if step % 1000 == 0:
                         print('final model train : Step %d: loss = %.2f(%.3f sec)' % (step, cost, duration))
                         summary_ = sess.run(sae.final_merged, feed_dict=feed_dict)
                         writer.add_summary(summary_,step)
                         fianl_saver.save(sess, os.path.join(final_ckpt_dir, 'final_model.ckpt'))
 
-                        print(' Train data evaluation')
-                        do_eval(sess,
-                                sae.correct,
-                                sae.x,
-                                sae.y,
-                                train_data)
+                        precision = sess.run(sae.precision,
+                                             feed_dict={sae.x: train_data._images,
+                                                        sae.y: train_data._labels})
+                        print(' Train data evaluation, precision=%f' % precision)
 
-                    if (step + 1) % 500 == 0 or (step + 1) == Config.max_steps:
+                        summary_p = sess.run(sae.precision_train_merged,
+                                             feed_dict={sae.x: train_data._images,
+                                                        sae.y: train_data._labels})
+                        writer.add_summary(summary_p, step)
 
+                    if (step + 1) % 1000 == 0 or (step + 1) == Config.max_steps:
                         print(' Valid data evaluation')
-                        do_eval(sess,
-                                sae.correct,
-                                sae.x,
-                                sae.y,
-                                valid_data)
+                        summary_p = sess.run(sae.precision_valid_merged,
+                                             feed_dict={sae.x: valid_data._images,
+                                                        sae.y: valid_data._labels})
+                        writer.add_summary(summary_p, step)
 
-                    if (step + 1) % 500 == 0 or (step + 1) == Config.max_steps:\
-
+                    if (step + 1) % 1000 == 0 or (step + 1) == Config.max_steps:
                         print(' Test data evaluation')
-                        do_eval(sess,
-                                sae.correct,
-                                sae.x,
-                                sae.y,
-                                test_data)
+                        summary_p = sess.run(sae.precision_test_merged,
+                                             feed_dict={sae.x: test_data._images,
+                                                        sae.y: test_data._labels})
+                        writer.add_summary(summary_p, step)
             else:
 
                 ckpt = tf.train.get_checkpoint_state(final_ckpt_dir)
                 fianl_saver.restore(sess, ckpt.model_checkpoint_path)
                 # v = tf.get_collection(tf.GraphKeys.VARIABLES)
 
-                print(' Train data evaluation')
-                do_eval(sess,
-                        sae.correct,
-                        sae.x,
-                        sae.y,
-                        train_data)
-
-                print(' Valid data evaluation')
-                do_eval(sess,
-                        sae.correct,
-                        sae.x,
-                        sae.y,
-                        valid_data)
-
-                print(' Test data evaluation')
-                do_eval(sess,
-                        sae.correct,
-                        sae.x,
-                        sae.y,
-                        test_data)
+                # print(' Train data evaluation')
+                # do_eval(sess,
+                #         sae.correct,
+                #         sae.x,
+                #         sae.y,
+                #         train_data)
+                #
+                # print(' Valid data evaluation')
+                # do_eval(sess,
+                #         sae.correct,
+                #         sae.x,
+                #         sae.y,
+                #         valid_data)
+                #
+                # print(' Test data evaluation')
+                # do_eval(sess,
+                #         sae.correct,
+                #         sae.x,
+                #         sae.y,
+                #         test_data)
 
 
 if __name__ == "__main__":

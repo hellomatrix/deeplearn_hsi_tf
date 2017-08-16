@@ -5,7 +5,7 @@ encoder_layers = [60, 60, 60, 60]
 # epoch_pretrain_times = 60 # for others
 epoch_ae_pretrain_times = 500 # for ksc only
 # SAE_train_times =100 # for others
-epoch_sae_pretrain_times =10000 # for ksc only
+epoch_sae_pretrain_times =1000 # for ksc only
 # epoch_train_times = 10000  # for others
 epoch_final_train_times = 100000 # for ksc only
 
