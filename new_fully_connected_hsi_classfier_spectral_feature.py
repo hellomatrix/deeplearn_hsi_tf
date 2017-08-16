@@ -21,7 +21,7 @@ def do_eval(sess,
     steps_per_epoch = data_set._num_examples // Config.batch_size
     num_examples = steps_per_epoch*Config.batch_size # get the the int times of batch size
 
-    # for step in range(steps_per_epoch):
+    for step in range(steps_per_epoch):
 
         feed_dict = fill_feed_dict(data_set, images_placeholder, labels_placeholder)
         true_count += sess.run(eval_correct,feed_dict=feed_dict)
@@ -44,7 +44,7 @@ def run_trainning():
 
 
     ## data 2------------------------
-    # dataname = Config.Salinas
+    dataname = Config.Salinas
     # class_num =Config.ksc_class_num
     ## data 2------------------------
 
@@ -119,7 +119,6 @@ def run_trainning():
                         print(' Train data evaluation')
                         do_eval(sess,
                                 sae.correct,
-
                                 sae.x,
                                 sae.y,
                                 train_data)
