@@ -124,7 +124,7 @@ class new_SAE(object):
         correct = tf.nn.in_top_k(self.encoders_reconstruction, tf.cast(self.y,tf.int32),
                                  1)  # if the maxmum k value could match labels, return True
         self.correct = tf.reduce_sum(tf.cast(correct, tf.int32))
-
+fdafdsafsdfsdf
 
         # #----------tensorboard-------------------------------------------------
         with tf.name_scope('sae_summary') as sae_smry:
