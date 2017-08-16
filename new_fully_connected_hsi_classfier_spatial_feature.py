@@ -44,7 +44,7 @@ def run_trainning():
 
 
     ## data 2------------------------
-    dataname = Config.Salinas
+    # dataname = Config.Salinas
     # class_num =Config.ksc_class_num
     ## data 2------------------------
 

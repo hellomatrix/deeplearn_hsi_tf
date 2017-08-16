@@ -121,8 +121,7 @@ class new_SAE(object):
 
 
         # correct numbers
-        correct = tf.nn.in_top_k(self.encoders_reconstruction, tf.cast(self.y,tf.int32),
-                                 1)  # if the maxmum k value could match labels, return True
+        correct = tf.nn.in_top_k(self.encoders_reconstruction, tf.cast(self.y,tf.int32),1)  # if the maxmum k value could match labels, return True
         self.correct = tf.reduce_sum(tf.cast(correct, tf.int32))
 
 
@@ -171,6 +170,27 @@ class new_SAE(object):
 
             self.final_merged = tf.summary.merge(self.final_summayrs, f_smry)
 
+
+
+            # #----------tensorboard----percision---------------------------------------------
+
+        with tf.name_scope('final_model_summary') as f_smry:
+            self.final_loss_scaler = tf.summary.scalar('percision', )
+
+            # self.sae_hist = tf.summary.histogram('encoder_weights', self.weights['w1'])
+            #
+            # im_w = self.weights['w1'] * 100
+            # im_w = tf.expand_dims(tf.expand_dims(im_w, 0), -1)
+            # self.sae_hist_img_weight = tf.summary.image('AE_weights', im_w)
+
+            self.final_summayrs.append(self.final_loss_scaler)
+
+            # self.sae_summayrs.append(self.sae_hist)
+            # self.sae_summayrs.append(self.sae_img_weight)
+
+            self.final_merged = tf.summary.merge(self.final_summayrs, f_smry)
+
+            # #----------tensorboard----percision---------------------------------------------
 
 
     def transform(self,feed_dict,layer_idx,sess):

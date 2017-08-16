@@ -1,4 +1,3 @@
-
 import tensorflow as tf
 from new_SAE import new_SAE
 import Config
@@ -33,15 +32,15 @@ def do_eval(sess,
 def run_trainning():
 
     # # ## data 1------------------------
-    dataname = Config.paviaU
+    # dataname = Config.paviaU
     # # ## data 1------------------------
 
     ## data 2------------------------
-    #dataname = Config.ksc
+    dataname = Config.ksc
     ## data 2------------------------
 
     ## data 2------------------------
-    dataname = Config.Salinas
+    # dataname = Config.Salinas
     ## data 2------------------------
 
     # log
