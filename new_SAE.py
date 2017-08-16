@@ -119,12 +119,13 @@ class new_SAE(object):
         # Set the trainning objection to minimize loss
         self.optimizer_final = optimizer_final.minimize(self.cost_final)
 
-
         # correct numbers
         correct = tf.nn.in_top_k(self.encoders_reconstruction, tf.cast(self.y,tf.int32),
                                  1)  # if the maxmum k value could match labels, return True
         self.correct = tf.reduce_sum(tf.cast(correct, tf.int32))
-fdafdsafsdfsdf
+
+fdasfsda
+
 
         # #----------tensorboard-------------------------------------------------
         with tf.name_scope('sae_summary') as sae_smry:
