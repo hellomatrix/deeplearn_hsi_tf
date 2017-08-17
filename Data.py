@@ -35,7 +35,7 @@ class Data():
         self.img_2d_shape = gnd_img.shape
 
         self.hsi_img = self.scale_to_unit_interval(hsi_img)
-        self.gnd_img = gnd_img
+        self.gnd_img = gnd_img-1
 
         self.split_mask = self.get_split_mask()
 
@@ -48,7 +48,7 @@ class Data():
         # ##------------------------
 
         # remove unlabel pixels
-        self.split_mask[gnd_img==0]= '-255'
+        self.split_mask[self.gnd_img==-1]= '-255'
         temp = self.split_mask.tolist()
         a=0
         for i in range(len(temp)):
@@ -63,7 +63,7 @@ class Data():
              [0, 128, 128], [0, 0, 128], [255, 215, 0]],
             dtype='int32')
 
-        self.draw_samples()
+        # self.draw_samples()
         ##------------------------
 
 
@@ -273,6 +273,7 @@ class Data_Set():
         self._images = data[0]
         self._labels = data[1]
         self.feature_dim = data[0].shape[1]
+        self.labels_dim = np.max(self._labels)+1 # 0 is the first class
 
     def next_batch(self,batch_size=Config.batch_size):
 
@@ -301,13 +302,16 @@ class Data_Set():
         return self._images[start:end],self._labels[start:end]
 
 
-def fill_feed_dict(data_set,images_pl,labels_pl):
+def next_feed_dict(data_set,images_pl,labels_pl):
 
     images_feed,labels_feed = data_set.next_batch(Config.batch_size)
 
-    feed_dict={images_pl:images_feed,labels_pl:labels_feed}
+    feed_dict_vector={images_pl:images_feed,labels_pl:labels_feed}
+    # feed_dict_onehot = {images_pl: images_feed, labels_pl: labels_feed}
 
-    return feed_dict
+    return feed_dict_vector
+
+
 
 def do_eval(sess,eval_correct,images_placeholder,labels_placeholder,data_set):
 
@@ -318,7 +322,7 @@ def do_eval(sess,eval_correct,images_placeholder,labels_placeholder,data_set):
 
     for step in range(steps_per_epoch):
 
-        feed_dict = fill_feed_dict(data_set, images_placeholder, labels_placeholder)
+        feed_dict = next_feed_dict(data_set, images_placeholder, labels_placeholder)
         true_count += sess.run(eval_correct,feed_dict=feed_dict)
 
 

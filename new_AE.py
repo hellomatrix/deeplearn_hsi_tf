@@ -5,7 +5,7 @@ import os
 
 class new_AE(object):
 
-    def __init__(self,input_dim,layer_units,transfer_function=tf.nn.softplus,optimizer = tf.train.AdamOptimizer()):
+    def __init__(self,input_dim,layer_units,transfer_function=None,optimizer = tf.train.AdamOptimizer()):
 
         self.feature_dim = input_dim
         self.layer_units = layer_units

@@ -3,27 +3,28 @@ import tensorflow as tf
 from new_AE import new_AE
 import time
 import Config
+import math
 
-from Data import fill_feed_dict
+from Data import next_feed_dict
 import os
 
 
-def reuse_layer(temp_img_placeholder, layer_units,transfer_function=tf.nn.softplus):
+def reuse_layer(temp_img_placeholder, layer_units,transfer_function=None):
 
         feature_dim = int(temp_img_placeholder.shape[1])
         weights = tf.get_variable('w1', shape=[feature_dim, layer_units],
                                   initializer=tf.random_normal_initializer(mean=0, stddev=1.0))
         biases = tf.Variable(tf.zeros([layer_units],dtype=tf.float32),name='b1')
-        rc = tf.add(tf.matmul(temp_img_placeholder, weights) , biases)
-        h = transfer_function(rc)
+
+        h = transfer_function(tf.add(tf.matmul(temp_img_placeholder, weights) , biases))
         print('operation name of reuse layer:%s'%h)
 
-        return h,rc
+        return h
 
 
 class new_SAE(object):
 
-    def __init__(self,input_dim,encoder_shape,all_data_num,transfer_function=tf.nn.softplus,optimizer = tf.train.AdamOptimizer(),):
+    def __init__(self,input_dim,encoder_shape,data_sets_shape,transfer_function=None,optimizer = tf.train.AdamOptimizer(),):
 
         self.encoder_W = []
         self.encoder_b = []
@@ -33,14 +34,23 @@ class new_SAE(object):
         self.encoder_layers=[]
         self.encoder_cost = []
         self.decoder_weights = []
-        self.all_summayrs =[]
-        self.all_data_num = all_data_num
+
+        self.sae_summary = []
+        self.final_model_summary =[]
+        self.precision_train =[]
+        self.precision_valid =[]
+        self.precision_test =[]
+
+        self.train_data_num = data_sets_shape[0]
+        self.valid_data_num = data_sets_shape[1]
+        self.test_data_num = data_sets_shape[2]
 
         self.transfer_function=transfer_function
         self.optimizer = optimizer
 
         # input
         self.x = tf.placeholder(tf.float32,[None,self.feature_dim]) ## important to save real data
+        # self.y1 = tf.placeholder(tf.float32,[None,self.labels_dim]) ## important to save real data
         self.y = tf.placeholder(tf.float32,[None]) ## important to save real data
 
         temp_input_dim = self.feature_dim
@@ -56,9 +66,9 @@ class new_SAE(object):
             print('encoder: i=%d'%i)
 
             with tf.variable_scope('encode_layer{0}'.format(i)):
-                ae = new_AE(temp_input_dim, encoder_shape[i])
+                ae = new_AE(temp_input_dim, self.encoder_shape[i],transfer_function=self.transfer_function)
 
-                temp_input_dim = encoder_shape[i]
+                temp_input_dim = self.encoder_shape[i]
                 print('operation name of AE layer:%s' %ae.hidden)
 
                 # temp_cost = tf.reduce_mean(tf.pow(tf.subtract(temp_ae.reconstruction, self.x), 2.0))
@@ -68,12 +78,19 @@ class new_SAE(object):
             # the real encoder layers in encoder
             with tf.variable_scope('encode_layer{0}'.format(i),reuse=True):
 
-                temp_img_placeholder, encoders_reconstruction = \
-                    reuse_layer(temp_img_placeholder,layer_units=encoder_shape[i],transfer_function=self.transfer_function)
+                temp_img_placeholder = \
+                    reuse_layer(temp_img_placeholder,layer_units=self.encoder_shape[i],transfer_function=self.transfer_function)
 
                 self.encoder_h.append(temp_img_placeholder)
 
-        self.encoders_reconstruction = encoders_reconstruction
+
+        # soft_max layer
+        weights = tf.Variable(tf.truncated_normal(
+            [self.encoder_shape[-1], self.labels_dim],stddev=1.0/math.sqrt(float(self.encoder_shape[-1]))),name='w_out')
+
+        biases = tf.Variable(tf.zeros([self.labels_dim],dtype=tf.float32),name='b_out')
+
+        self.encoders_reconstruction = tf.add(tf.matmul(temp_img_placeholder, weights), biases)
 
         # decoder layers
         h = temp_img_placeholder
@@ -108,8 +125,9 @@ class new_SAE(object):
 
 
         # #-------------final model cost----------------------------------------------------------------------
+
         cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
-            labels=tf.cast(self.y,tf.int32), logits=self.encoders_reconstruction, name='xentropy')
+            labels=tf.cast(self.y,tf.int32),logits=self.encoders_reconstruction, name='xentropy')
 
         self.cost_final = tf.reduce_mean(cross_entropy, name='xentropy_mean')
 
@@ -127,12 +145,14 @@ class new_SAE(object):
 
         self.correct = tf.reduce_sum(tf.cast(correct, tf.int32))
 
-        self.precision = self.correct/self.all_data_num
+        self.one_batch_precsion = self.correct /Config.batch_size
+        self.all_train_precision = self.correct/self.train_data_num
 
         # #----------tensorboard-------------------------------------------------
         with tf.name_scope('sae_summary') as sae_smry:
 
-            self.sae_loss_scaler = tf.summary.scalar('loss',self.cost)
+
+            self.sae_loss_scaler = tf.summary.scalar('sae_loss',self.cost)
 
             # self.sae_hist = tf.summary.histogram('encoder_weights', self.weights['w1'])
             #
@@ -140,12 +160,12 @@ class new_SAE(object):
             # im_w = tf.expand_dims(tf.expand_dims(im_w, 0), -1)
             # self.sae_hist_img_weight = tf.summary.image('AE_weights', im_w)
 
-            self.all_summayrs.append(self.sae_loss_scaler)
+            self.sae_summary.append(self.sae_loss_scaler)
 
             # self.sae_summayrs.append(self.sae_hist)
             # self.sae_summayrs.append(self.sae_img_weight)
 
-            self.sae_merged = tf.summary.merge(self.all_summayrs,sae_smry)
+            self.sae_merged = tf.summary.merge(self.sae_summary,sae_smry)
 
             # tf.summary.histogram('AE_weights',self.weights['b1'])
 
@@ -160,37 +180,26 @@ class new_SAE(object):
         with tf.name_scope('final_model_summary') as f_smry:
 
             self.final_loss_scaler = tf.summary.scalar('loss', self.cost_final)
-
-            # self.sae_hist = tf.summary.histogram('encoder_weights', self.weights['w1'])
-            #
-            # im_w = self.weights['w1'] * 100
-            # im_w = tf.expand_dims(tf.expand_dims(im_w, 0), -1)
-            # self.sae_hist_img_weight = tf.image('AE_weights', im_w)
-
-            self.all_summayrs.append(self.final_loss_scaler)
-
-            # self.sae_summayrs.append(self.sae_hist)
-            # self.sae_summayrs.append(self.sae_img_weight)
-
-            self.final_merged = tf.summary.merge(self.all_summayrs, f_smry)
+            self.final_model_summary.append(self.final_loss_scaler)
+            self.final_merged = tf.summary.merge(self.final_model_summary, f_smry)
 
             # #----------tensorboard-------------------------------------------------
         with tf.name_scope('precision_train') as pt:
 
-            precision = tf.summary.scalar('precision_train', self.correct/self.all_data_num)
-            self.all_summayrs.append(precision)
-            self.precision_train_merged = tf.summary.merge(self.all_summayrs, pt)
+            precision1 = tf.summary.scalar('precision_train', self.all_train_precision)
+            self.precision_train.append(precision1)
+            self.precision_train_merged = tf.summary.merge(self.precision_train, pt)
 
             # #----------tensorboard-------------------------------------------------
         with tf.name_scope('precision_valid') as pv:
-            precision = tf.summary.scalar('precision_valid', self.correct / self.all_data_num)
-            self.all_summayrs.append(precision)
-            self.precision_valid_merged = tf.summary.merge(self.all_summayrs, pv)
+            precision2 = tf.summary.scalar('precision_valid', self.correct/self.valid_data_num)
+            self.precision_valid.append(precision2)
+            self.precision_valid_merged = tf.summary.merge(self.precision_valid, pv)
 
         with tf.name_scope('precision_test') as pte:
-            precision = tf.summary.scalar('precision_test', self.correct / self.all_data_num)
-            self.all_summayrs.append(precision)
-            self.precision_test_merged = tf.summary.merge(self.all_summayrs, pte)
+            precision3 = tf.summary.scalar('precision_test', self.correct/self.test_data_num)
+            self.precision_test.append(precision3)
+            self.precision_test_merged = tf.summary.merge(self.precision_test, pte)
 
 
     def transform(self,feed_dict,layer_idx,sess):
@@ -198,11 +207,11 @@ class new_SAE(object):
 
 
     # pre train the AE and SAE
-    def pre_train(self,train_data,sess,path):
+    def pre_train(self,train_data,sess,graph_path):
 
         # train AE
         epoch_size = train_data._num_examples
-        writer = tf.summary.FileWriter(path,tf.get_default_graph())
+        writer = tf.summary.FileWriter(graph_path,tf.get_default_graph())
 
         for i in range(len(self.encoder_layers)):
             print('pre train: i=%d' % i)
@@ -210,7 +219,7 @@ class new_SAE(object):
 
             for step in range(int(Config.epoch_ae_pretrain_times*epoch_size/Config.batch_size)):
                 start_time = time.time()
-                feed_dict = fill_feed_dict(train_data, 'input', 'label')
+                feed_dict = next_feed_dict(train_data, 'input', 'label')
                 X = feed_dict['input']
 
                 if i > 0:
@@ -221,26 +230,24 @@ class new_SAE(object):
                 cost, _ = ae.partial_fit(feed_dict={ae.x: X}, sess=sess)
                 duration = time.time() - start_time
 
-                if step % 1000 == 0:
-                    print('encoder laye%d, Step %d, loss = %.2f(%.3f sec)' % (i, step, cost, duration))
+                if step % 500 == 0:
+                    print('encoder laye%d, Step %d, loss = %.5f(%.3f sec)' % (i, step, cost, duration))
                     summary_ = sess.run(ae.merged, feed_dict={ae.x: X})
                     writer.add_summary(summary_,step)
-                    # saver.save(sess,os.path.join(ckpt_dir,'mode.ckpt'),global_step=step)
 
         # train SAE
         for step in range(int(Config.epoch_sae_pretrain_times*epoch_size/Config.batch_size)):
             start_time = time.time()
-            feed_dict = fill_feed_dict(train_data, 'input', 'label')
+            feed_dict = next_feed_dict(train_data, 'input', 'label')
             X = feed_dict['input']
 
             cost, _ = self.train_SAE(feed_dict={self.x: X}, sess=sess)
             duration = time.time() - start_time
 
-            if step % 1000 == 0:
-                print('train SAE: Step %d: loss = %.2f(%.3f sec)' % (step, cost, duration))
+            if step % 500 == 0:
+                print('train SAE: Step %d: loss = %.5f(%.3f sec)' % (step, cost, duration))
                 summary_ = sess.run(self.sae_merged, feed_dict={self.x: X})
                 writer.add_summary(summary_, step)
-                # saver.save(sess, os.path.join(ckpt_dir, 'pretrain_SAE.ckpt'), global_step=step)
 
     def train_SAE(self,feed_dict,sess):
         cost, op = sess.run((self.cost,self.optimizer), feed_dict=feed_dict)  # the same feature dim
