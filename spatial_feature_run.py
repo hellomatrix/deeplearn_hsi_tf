@@ -9,16 +9,16 @@ dataname = Config.Salinas
 
 trans_function = tf.nn.sigmoid
 
-mix_log = '/' + dataname + '/' + 'spatial'
+log = '/' + dataname + '/' + 'spatial'
 
-pre_need_train = True
-final_need_train = True
+pre_need_train = False
+final_need_train = False
 
-final_model_dir = Config.final_model_dir + mix_log
+final_model_dir = Config.final_model_dir + log
 if not os.path.exists(final_model_dir):
     os.makedirs(final_model_dir)
 
-pre_train_model_dir = Config.pretrain_model_dir + mix_log
+pre_train_model_dir = Config.pretrain_model_dir + log
 if not os.path.exists(pre_train_model_dir):
     os.makedirs(pre_train_model_dir)
 

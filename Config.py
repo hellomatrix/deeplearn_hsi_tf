@@ -3,27 +3,23 @@
 encoder_layers = [60, 60, 60, 60]
 
 
-epoch_ae_pretrain_times = 150 # for others
+# #-----------------for others
+epoch_ae_pretrain_times = 150 # for
 epoch_sae_pretrain_times =300# for others
 epoch_final_train_times = 10000 # for others
-
-
-# #for test
-# test_ae_pretrain_times = 5 # for ksc only
-# # SAE_train_times =100 # for others
-# test_sae_pretrain_times =20# for ksc only
-# # epoch_train_times = 10000  # for others
-# test_final_train_times = 50 # for ksc only
-
-
-#au_epoch = 10
-#tied_weights = True
 batch_size = 200
+
+# #-----------------for ksc
+# epoch_ae_pretrain_times = 1500
+# epoch_sae_pretrain_times =3000
+# epoch_final_train_times = 100000
+# batch_size = 100
+
+
 learn_rate = 0.01
 # final_learn_rate = 0.01
 final_learn_rate = 0.001
 set_ratio = [6, 2, 2]
-
 max_steps = 100000
 
 data_path= '../hsi_data'
@@ -41,8 +37,11 @@ paviaU = 'paviaU'
 #paviaU_class_num = 10
 
 Salinas = 'Salinas'
+Salinas17817 = 'Salinas17817'
+
+dic_pre_train={Salinas:Salinas,Salinas17817:Salinas,paviaU:paviaU,ksc:ksc}
 
 random_state = 25535
 
-pretrain_model_dir = './pretrain_model/'
-final_model_dir = './final_model/'
+pretrain_model_dir = './pretrain_model'
+final_model_dir = './final_model'

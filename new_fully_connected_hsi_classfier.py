@@ -31,6 +31,8 @@ def run_trainning(data_sets,final_ckpt_dir,pre_train_ckpt_dir,transfer_function,
         valid_data = Data_Set([data_sets[2],data_sets[3]])
         test_data = Data_Set([data_sets[4],data_sets[5]])
 
+        writer = tf.summary.FileWriter(final_train_graph_path, gad)
+
         with tf.Session(graph = gad) as sess:
 
             input_dim = [train_data.feature_dim,train_data.labels_dim]
@@ -40,10 +42,11 @@ def run_trainning(data_sets,final_ckpt_dir,pre_train_ckpt_dir,transfer_function,
             sae = new_SAE(input_dim, encoder_shape=Config.encoder_layers,
                           data_sets_shape=[train_data._num_examples,valid_data._num_examples,test_data._num_examples],
                           transfer_function=transfer_function)
+
             pre_trian_saver = tf.train.Saver()  # after graph, sometime with variable name ,so so
             fianl_saver = tf.train.Saver()  # after graph, sometime with variable name ,so so
 
-            writer = tf.summary.FileWriter(final_train_graph_path,gad)
+
             init = tf.global_variables_initializer() # order is important,after graph
             sess.run(init)  #after graph
 
@@ -106,9 +109,10 @@ def run_trainning(data_sets,final_ckpt_dir,pre_train_ckpt_dir,transfer_function,
                 ckpt = tf.train.get_checkpoint_state(final_train_ckpt_path)
                 fianl_saver.restore(sess, ckpt.model_checkpoint_path)
 
+
                 for step in range(int(Config.epoch_final_train_times * epoch_size / Config.batch_size)):
                     start_time = time.time()
-                    feed_dict = fill_feed_dict(train_data, sae.x, sae.y)
+                    feed_dict = next_feed_dict(train_data, sae.x, sae.y)
 
                     cost,_= sae.train_final_model(feed_dict,sess)
 
@@ -116,19 +120,19 @@ def run_trainning(data_sets,final_ckpt_dir,pre_train_ckpt_dir,transfer_function,
 
                     if step % 1000 == 0:
                         print('final model train : Step %d: loss = %.5f(%.3f sec)' % (step, cost, duration))
-                        summary_ = sess.run(sae.final_merged, feed_dict=feed_dict)
-                        writer.add_summary(summary_,step)
+                        summary_loss = sess.run(sae.final_merged, feed_dict=feed_dict)
+                        writer.add_summary(summary_loss,step)
                         fianl_saver.save(sess, os.path.join(final_train_ckpt_path, 'final_model.ckpt'))
 
-                        precision_correct = sess.run(sae.correct,
-                                             feed_dict=feed_dict)
-                        print(' Train data evaluation, one batch precision=%5f' % precision_correct)
 
-                        precision = sess.run(sae.precision,
+                        precision1 = sess.run(sae.one_batch_precsion,
+                                             feed_dict=feed_dict)
+                        print(' Train data evaluation, one batch data precision=%10f' % precision1)
+
+                        precision2 = sess.run(sae.all_train_precision,
                                              feed_dict={sae.x: train_data._images,
                                                         sae.y: train_data._labels})
-                        print(' Train data evaluation, all train data precision=%5f' % precision)
-
+                        print(' Train data evaluation, all train data precision=%10f' % precision2)
 
                         summary_p1 = sess.run(sae.precision_train_merged,
                                              feed_dict={sae.x: train_data._images,
@@ -148,8 +152,6 @@ def run_trainning(data_sets,final_ckpt_dir,pre_train_ckpt_dir,transfer_function,
                                              feed_dict={sae.x: test_data._images,
                                                         sae.y: test_data._labels})
                         writer.add_summary(summary_p3, step)
-
-
 if __name__ == "__main__":
 
     dataname = Config.paviaU

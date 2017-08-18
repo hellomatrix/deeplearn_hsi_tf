@@ -13,8 +13,14 @@ class Data():
         hsi_file = Config.data_path+'/'+data_name+'/'+data_name+'.mat'
         gnd_file = Config.data_path+'/'+data_name+'/'+data_name+'_gt.mat'
 
-        hsi_img = sio.loadmat(hsi_file)[data_name].astype(np.float32)
-        gnd_img = sio.loadmat(gnd_file)[data_name+'_gt'].astype(np.int32)
+        hi = sio.loadmat(hsi_file)
+        gi = sio.loadmat(gnd_file)
+
+        hsi_img = hi[list(hi.keys())[-1]]
+        gnd_img = gi[list(gi.keys())[-1]]
+
+        # hsi_img = sio.loadmat(hsi_file)[data_name].astype(np.float32)
+        # gnd_img = sio.loadmat(gnd_file)[data_name+'_gt'].astype(np.int32)
 
         #self.s_dim = hsi_img.shape[2]
 
