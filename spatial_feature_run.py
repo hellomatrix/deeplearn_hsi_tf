@@ -7,7 +7,7 @@ import tensorflow as tf
 
 dataname = Config.Salinas
 
-trans_function = tf.nn.sigmoid
+trans_function = tf.nn.softplus
 
 log = '/' + dataname + '/' + 'spatial'
 

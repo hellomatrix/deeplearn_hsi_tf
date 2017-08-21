@@ -5,16 +5,24 @@ import scipy.io as sio
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
+
+#--------------------ly
+import scipy.io as sio
+import numpy as np
+from read_data import get_MLdata_batch, scale_to_unit_interval
+
+
+
 class Data():
 
 
     def __init__(self, data_name = ''):
 
-        hsi_file = Config.data_path+'/'+data_name+'/'+data_name+'.mat'
-        gnd_file = Config.data_path+'/'+data_name+'/'+data_name+'_gt.mat'
+        self.hsi_file = Config.data_path+'/'+data_name+'/'+data_name+'.mat'
+        self.gnd_file = Config.data_path+'/'+data_name+'/'+data_name+'_gt.mat'
 
-        hi = sio.loadmat(hsi_file)
-        gi = sio.loadmat(gnd_file)
+        hi = sio.loadmat(self.hsi_file)
+        gi = sio.loadmat(self.gnd_file)
 
         hsi_img = hi[list(hi.keys())[-1]]
         gnd_img = gi[list(gi.keys())[-1]]
@@ -268,6 +276,97 @@ class Data():
               valid_data_y.shape,test_data_x.shape,test_data_y.shape)
 
         return [train_data_x,train_data_y,valid_data_x,valid_data_y,test_data_x,test_data_y]
+
+    #
+    # def get_block_sampling_ly_spectral(self):
+    #
+    #     h = sio.loadmat(self.hsi_file)
+    #     g = sio.loadmat(self.gnd_file)
+    #
+    #     img = h[list(h.keys())[-1]]
+    #     gnd_img = g[list(g.keys())[-1]]
+    #
+    #     # pdb.set_trace()
+    #     img = img.astype(np.float32)
+    #     gnd_img = gnd_img.astype(np.int32)
+    #     ml_data_generate = get_MLdata_batch(img, gnd_img, window=1, random=False)
+    #
+    #     train_X_w, train_y = ml_data_generate.train_data_whole()
+    #     valid_X_w, valid_y = ml_data_generate.valid_data()
+    #     test_X_w, test_y = ml_data_generate.test_data()
+    #
+    #     #print('here1')
+    #
+    #     # construct data
+    #     data_sets_spectral = [np.reshape(train_X_w, [train_X_w.shape[0], -1]), train_y,
+    #                  np.reshape(valid_X_w, [valid_X_w.shape[0], -1]), valid_y,
+    #                  np.reshape(test_X_w, [test_X_w.shape[0], -1]), test_y]
+    #
+    #
+    #
+    #     return data_sets_spectral
+
+
+    def get_block_sampling_ly_all(self,window=3):
+
+        h = sio.loadmat(self.hsi_file)
+        g = sio.loadmat(self.gnd_file)
+
+        img = h[list(h.keys())[-1]]
+        gnd_img = g[list(g.keys())[-1]]
+
+        # pdb.set_trace()
+        img = img.astype(np.float32)
+        gnd_img = gnd_img.astype(np.int32)
+
+        #   #   # ---------------------------spectral----------------------------------------------
+        # Train pca
+        ml_data_generate_spectral = get_MLdata_batch(img, gnd_img, window=1, random=False)
+        train_X_spectral, train_y = ml_data_generate_spectral.train_data_whole()
+        valid_X_spectral, valid_y = ml_data_generate_spectral.valid_data()
+        test_X_spectral, test_y = ml_data_generate_spectral.test_data()
+
+        #print('here1')
+
+        # construct data
+        data_sets_spectral = [np.reshape(train_X_spectral, [train_X_spectral.shape[0], -1]), train_y,
+                     np.reshape(valid_X_spectral, [valid_X_spectral.shape[0], -1]), valid_y,
+                     np.reshape(test_X_spectral, [test_X_spectral.shape[0], -1]), test_y]
+
+        #   #   # ---------------------------spatial----------------------------------------------
+        pca = PCA(n_components=3)
+        newTrain = pca.fit_transform(np.reshape(train_X_spectral, [train_X_spectral.shape[0], -1]))
+
+        # get pca feature
+        ml_data_generate = get_MLdata_batch(img, gnd_img, window=window, random=False)
+
+        train_X_w, train_y = ml_data_generate.train_data_whole()
+        valid_X_w, valid_y = ml_data_generate.valid_data()
+        test_X_w, test_y = ml_data_generate.test_data()
+
+
+        train_X_pca = pca.transform(np.reshape(train_X_w, [-1,train_X_w.shape[3]]))
+        valid_X_pca = pca.transform(np.reshape(valid_X_w, [-1,valid_X_w.shape[3]]))
+        test_X_pca = pca.transform(np.reshape(test_X_w, [-1,test_X_w.shape[3]]))
+
+        train_X_pca = np.reshape(train_X_pca, [train_X_w.shape[0], -1])
+        valid_X_pca = np.reshape(valid_X_pca, [valid_X_w.shape[0], -1])
+        test_X_pca = np.reshape(test_X_pca, [test_X_w.shape[0], -1])
+
+        # construct data
+        data_sets_spatial = [train_X_pca, train_y,
+                             valid_X_pca, valid_y,
+                             test_X_pca, test_y]
+        #    #   # ---------------------------mix----------------------------------------------
+
+        data_sets_mix = [np.concatenate((data_sets_spectral[0],train_X_pca),axis=1), train_y,
+                         np.concatenate((data_sets_spectral[2],valid_X_pca),axis=1), valid_y,
+                         np.concatenate((data_sets_spectral[4],test_X_pca),axis=1), test_y]
+
+
+
+        return [data_sets_spectral,data_sets_spatial,data_sets_mix]
+
 
 
 class Data_Set():

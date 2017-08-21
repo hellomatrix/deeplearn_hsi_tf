@@ -6,7 +6,7 @@ encoder_layers = [60, 60, 60, 60]
 # #-----------------for others
 epoch_ae_pretrain_times = 150 # for
 epoch_sae_pretrain_times =300# for others
-epoch_final_train_times = 10000 # for others
+epoch_final_train_times = 100000 # for others
 batch_size = 200
 
 # #-----------------for ksc
@@ -38,6 +38,7 @@ paviaU = 'paviaU'
 
 Salinas = 'Salinas'
 Salinas17817 = 'Salinas17817'
+Salinas_origin = 'Salinas_origin'
 
 dic_pre_train={Salinas:Salinas,Salinas17817:Salinas,paviaU:paviaU,ksc:ksc}
 

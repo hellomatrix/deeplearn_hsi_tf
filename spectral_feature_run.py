@@ -5,14 +5,14 @@ from Data import Data
 import new_fully_connected_hsi_classfier as fc
 import tensorflow as tf
 
-dataname = Config.Salinas
+dataname = Config.Salinas17817
 
 trans_function = tf.nn.sigmoid
 
 log = '/' + dataname + '/' + 'spectral'
 
-pre_need_train = False
-final_need_train = False
+pre_need_train = True
+final_need_train = True
 
 final_model_dir = Config.final_model_dir + log
 if not os.path.exists(final_model_dir):

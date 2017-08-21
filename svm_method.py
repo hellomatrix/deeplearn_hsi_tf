@@ -1,17 +1,19 @@
-from sklearn import svm
 import scipy.io as sio
 import numpy as np
 from read_data import get_MLdata_batch, scale_to_unit_interval
-from sklearn.metrics import accuracy_score
-from scipy.spatial.distance import euclidean
-import pdb
-import pickle
+
 
 window = 1
 
+# hsi_file = '../hsi_data/Salinas/Salinas.mat'
+# gnd_file = '../hsi_data/Salinas/Salinas_gt.mat'
 
-hsi_file = '../hsi_data/Salinas/Salinas.mat'
-gnd_file = '../hsi_data/Salinas/Salinas_gt.mat'
+# hsi_file = '../hsi_data/Salinas_origin/Salinas_origin.mat'
+# gnd_file = '../hsi_data/Salinas_origin/Salinas_origin_gt.mat'
+#
+# hsi_file = '../hsi_data/'+ dataname+/Salinas_origin.mat'
+# gnd_file = '../hsi_data/Salinas_origin/Salinas_origin_gt.mat'
+
 
 h = sio.loadmat(hsi_file)
 g = sio.loadmat(gnd_file)
