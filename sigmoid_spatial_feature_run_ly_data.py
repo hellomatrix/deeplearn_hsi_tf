@@ -4,7 +4,10 @@ import new_fully_connected_hsi_classfier as fc
 import tensorflow as tf
 from Data import Data
 
-dataname = 'Salinas_origin'
+# dataname = 'Salinas_origin'
+
+# dataname = Config.Salinas
+dataname = Config.Salinas17817
 
 trans_function = tf.nn.sigmoid
 

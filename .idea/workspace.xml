@@ -2,18 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1205197-b559-4cf3-9b02-86c7d71ed400" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/spectral_feature_run_ly_data.py" afterPath="$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/liuyang_data/spectral/ckpt/final_model.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/final_model/liuyang_data/spectral/ckpt/final_model.ckpt.data-00000-of-00001" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/liuyang_data/spectral/ckpt/final_model.ckpt.meta" afterPath="$PROJECT_DIR$/final_model/liuyang_data/spectral/ckpt/final_model.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/ckpt/final_model.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/final_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/ckpt/final_model.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/ckpt/final_model.ckpt.meta" afterPath="$PROJECT_DIR$/final_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/ckpt/final_model.ckpt.meta" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Config.py" afterPath="$PROJECT_DIR$/Config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data.py" afterPath="$PROJECT_DIR$/Data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/liuyang_data/spectral/ckpt/final_model.ckpt.index" afterPath="$PROJECT_DIR$/final_model/liuyang_data/spectral/ckpt/final_model.ckpt.index" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/liuyang_data/spectral/final_graph/events.out.tfevents.1503049138.ubuntu" afterPath="$PROJECT_DIR$/final_model/liuyang_data/spectral/final_graph/events.out.tfevents.1503049138.ubuntu" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pretrain_model/liuyang_data/spectral/SAE_graph/events.out.tfevents.1503049139.ubuntu" afterPath="$PROJECT_DIR$/pretrain_model/liuyang_data/spectral/SAE_graph/events.out.tfevents.1503049139.ubuntu" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spatial_feature_run.py" afterPath="$PROJECT_DIR$/spatial_feature_run.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spectral_feature_run.py" afterPath="$PROJECT_DIR$/spectral_feature_run.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/svm_method.py" afterPath="$PROJECT_DIR$/svm_method.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/ckpt/final_model.ckpt.index" afterPath="$PROJECT_DIR$/final_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/ckpt/final_model.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/final_graph/events.out.tfevents.1503321583.ubuntu" afterPath="$PROJECT_DIR$/final_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/final_graph/events.out.tfevents.1503321583.ubuntu" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/final_model/softplus/block_sampling_ly/Salinas_origin/spatial/final_graph/events.out.tfevents.1503321583.ubuntu" afterPath="$PROJECT_DIR$/final_model/softplus/block_sampling_ly/Salinas_origin/spatial/final_graph/events.out.tfevents.1503321583.ubuntu" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pretrain_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/SAE_graph/events.out.tfevents.1503321585.ubuntu" afterPath="$PROJECT_DIR$/pretrain_model/sigmoid/block_sampling_ly/Salinas_origin/spatial/SAE_graph/events.out.tfevents.1503321585.ubuntu" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pretrain_model/softplus/block_sampling_ly/Salinas_origin/spatial/SAE_graph/events.out.tfevents.1503321585.ubuntu" afterPath="$PROJECT_DIR$/pretrain_model/softplus/block_sampling_ly/Salinas_origin/spatial/SAE_graph/events.out.tfevents.1503321585.ubuntu" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sigmoid_mix_feature_run_ly_data.py" afterPath="$PROJECT_DIR$/sigmoid_mix_feature_run_ly_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sigmoid_spatial_feature_run_ly_data.py" afterPath="$PROJECT_DIR$/sigmoid_spatial_feature_run_ly_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py" afterPath="$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/softplus_mix_feature_run_ly_data.py" afterPath="$PROJECT_DIR$/softplus_mix_feature_run_ly_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/softplus_spatial_feature_run_ly_data.py" afterPath="$PROJECT_DIR$/softplus_spatial_feature_run_ly_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/softplus_spectral_feature_run_ly_data.py" afterPath="$PROJECT_DIR$/softplus_spectral_feature_run_ly_data.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,18 +25,19 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$softplus_spectral_feature_run_ly_data.coverage" NAME="softplus_spectral_feature_run_ly_data Coverage Results" MODIFIED="1503293206264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$softplus_spectral_feature_run_ly_data.coverage" NAME="softplus_spectral_feature_run_ly_data Coverage Results" MODIFIED="1503359719416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$new_fully_connected_hsi_classfier_spatial_feature.coverage" NAME="new_fully_connected_hsi_classfier_spatial_feature Coverage Results" MODIFIED="1502928113343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$sigmoid_mix_feature_run_ly_data.coverage" NAME="sigmoid_mix_feature_run_ly_data Coverage Results" MODIFIED="1503311891677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$softplus_mix_feature_run_ly_data.coverage" NAME="softplus_mix_feature_run_ly_data Coverage Results" MODIFIED="1503311963261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$sigmoid_mix_feature_run_ly_data.coverage" NAME="sigmoid_mix_feature_run_ly_data Coverage Results" MODIFIED="1503382672226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$softplus_mix_feature_run_ly_data.coverage" NAME="softplus_mix_feature_run_ly_data Coverage Results" MODIFIED="1503335883471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$new_fully_connected_hsi_classfier_mix_feature.coverage" NAME="new_fully_connected_hsi_classfier_mix_feature Coverage Results" MODIFIED="1503022494628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$sigmoid_spectral_feature_run_ly_data.coverage" NAME="sigmoid_spectral_feature_run_ly_data Coverage Results" MODIFIED="1503382663205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$new_fully_connected_hsi_classfier_spectral_feature.coverage" NAME="new_fully_connected_hsi_classfier_spectral_feature Coverage Results" MODIFIED="1502928089256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$mix_feature_run.coverage" NAME="mix_feature_run Coverage Results" MODIFIED="1503022858906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$sigmoid_spatial_feature_run_ly_data.coverage" NAME="sigmoid_spatial_feature_run_ly_data Coverage Results" MODIFIED="1503321532649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$sigmoid_spatial_feature_run_ly_data.coverage" NAME="sigmoid_spatial_feature_run_ly_data Coverage Results" MODIFIED="1503382686435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$svm_method.coverage" NAME="svm_method Coverage Results" MODIFIED="1503047791524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$spectral_feature_run.coverage" NAME="spectral_feature_run Coverage Results" MODIFIED="1503276976392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$spectral_feature_run_ly_data.coverage" NAME="spectral_feature_run_ly_data Coverage Results" MODIFIED="1503293327695" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$softplus_spatial_feature_run_ly_data.coverage" NAME="softplus_spatial_feature_run_ly_data Coverage Results" MODIFIED="1503321530120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$softplus_spatial_feature_run_ly_data.coverage" NAME="softplus_spatial_feature_run_ly_data Coverage Results" MODIFIED="1503359725867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$spatial_feature_run.coverage" NAME="spatial_feature_run Coverage Results" MODIFIED="1503017388513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/deeplearn_hsi_tf_v0$fully_connected_hsi_classfier_mix_feature.coverage" NAME="fully_connected_hsi_classfier_mix_feature Coverage Results" MODIFIED="1502868698060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bak/not_good" />
   </component>
@@ -50,35 +53,32 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="softplus_spatial_feature_run_ly_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/softplus_spatial_feature_run_ly_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="sigmoid_spatial_feature_run_ly_data.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sigmoid_spatial_feature_run_ly_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            <state relative-caret-position="432">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Data.py">
+      <file leaf-file-name="sigmoid_mix_feature_run_ly_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sigmoid_mix_feature_run_ly_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="370" column="0" lean-forward="false" selection-start-line="370" selection-start-column="0" selection-end-line="370" selection-end-column="0" />
-              <folding>
-                <element signature="e#1#19#0" expanded="true" />
-                <element signature="e#2504#2964#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="72">
+              <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sigmoid_spectral_feature_run_ly_data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,13 +141,13 @@
         <option value="$PROJECT_DIR$/sigmoid_liuyang_sampling.py" />
         <option value="$PROJECT_DIR$/svm_method.py" />
         <option value="$PROJECT_DIR$/bak/old/hsi_utils.py" />
+        <option value="$PROJECT_DIR$/Data.py" />
+        <option value="$PROJECT_DIR$/softplus_mix_feature_run_ly_data.py" />
         <option value="$PROJECT_DIR$/softplus_spatial_feature_run_ly_data.py" />
-        <option value="$PROJECT_DIR$/sigmoid_spatial_feature_run_ly_data.py" />
         <option value="$PROJECT_DIR$/softplus_spectral_feature_run_ly_data.py" />
         <option value="$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py" />
-        <option value="$PROJECT_DIR$/softplus_mix_feature_run_ly_data.py" />
         <option value="$PROJECT_DIR$/sigmoid_mix_feature_run_ly_data.py" />
-        <option value="$PROJECT_DIR$/Data.py" />
+        <option value="$PROJECT_DIR$/sigmoid_spatial_feature_run_ly_data.py" />
       </list>
     </option>
   </component>
@@ -190,7 +190,101 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="&lt; Python 3.6.1 (~/anaconda3/bin/python) &gt;" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="final_model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="softplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="final_model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sigmoid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="block_sampling_ly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Salinas_origin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="final_model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sigmoid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="block_sampling_ly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deeplearn_hsi_tf-v0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="final_model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -226,25 +320,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.sigmoid_spatial_feature_run_ly_data">
-    <configuration default="false" name="spectral_feature_run_ly_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="deeplearn_hsi_tf-v0" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="softplus_spatial_feature_run_ly_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -264,44 +339,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="sigmoid_mix_feature_run_ly_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="deeplearn_hsi_tf-v0" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sigmoid_mix_feature_run_ly_data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="softplus_mix_feature_run_ly_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="deeplearn_hsi_tf-v0" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/softplus_mix_feature_run_ly_data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="sigmoid_spatial_feature_run_ly_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -316,6 +353,63 @@
       <module name="deeplearn_hsi_tf-v0" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sigmoid_spatial_feature_run_ly_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="softplus_spectral_feature_run_ly_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="deeplearn_hsi_tf-v0" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/softplus_spectral_feature_run_ly_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="sigmoid_spectral_feature_run_ly_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="deeplearn_hsi_tf-v0" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="sigmoid_mix_feature_run_ly_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="deeplearn_hsi_tf-v0" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sigmoid_mix_feature_run_ly_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -471,19 +565,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.spectral_feature_run_ly_data" />
-      <item index="1" class="java.lang.String" itemvalue="Python.softplus_spatial_feature_run_ly_data" />
-      <item index="2" class="java.lang.String" itemvalue="Python.sigmoid_mix_feature_run_ly_data" />
-      <item index="3" class="java.lang.String" itemvalue="Python.softplus_mix_feature_run_ly_data" />
-      <item index="4" class="java.lang.String" itemvalue="Python.sigmoid_spatial_feature_run_ly_data" />
+      <item index="0" class="java.lang.String" itemvalue="Python.softplus_spatial_feature_run_ly_data" />
+      <item index="1" class="java.lang.String" itemvalue="Python.sigmoid_spatial_feature_run_ly_data" />
+      <item index="2" class="java.lang.String" itemvalue="Python.softplus_spectral_feature_run_ly_data" />
+      <item index="3" class="java.lang.String" itemvalue="Python.sigmoid_spectral_feature_run_ly_data" />
+      <item index="4" class="java.lang.String" itemvalue="Python.sigmoid_mix_feature_run_ly_data" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.sigmoid_spatial_feature_run_ly_data" />
-        <item index="1" class="java.lang.String" itemvalue="Python.softplus_spatial_feature_run_ly_data" />
-        <item index="2" class="java.lang.String" itemvalue="Python.softplus_mix_feature_run_ly_data" />
-        <item index="3" class="java.lang.String" itemvalue="Python.sigmoid_mix_feature_run_ly_data" />
-        <item index="4" class="java.lang.String" itemvalue="Python.spectral_feature_run_ly_data" />
+        <item index="1" class="java.lang.String" itemvalue="Python.sigmoid_mix_feature_run_ly_data" />
+        <item index="2" class="java.lang.String" itemvalue="Python.sigmoid_spectral_feature_run_ly_data" />
+        <item index="3" class="java.lang.String" itemvalue="Python.softplus_spatial_feature_run_ly_data" />
+        <item index="4" class="java.lang.String" itemvalue="Python.softplus_spectral_feature_run_ly_data" />
       </list>
     </recent_temporary>
   </component>
@@ -512,13 +606,13 @@
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30458817" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25760087" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16805845" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39979124" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25574112" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36534446" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
@@ -728,6 +822,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="540" column="0" lean-forward="false" selection-start-line="540" selection-start-column="0" selection-end-line="540" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -822,24 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spectral_feature_run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#14#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spatial_feature_run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/svm_method.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -916,61 +993,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py">
+    <entry file="file://$PROJECT_DIR$/Data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        <state relative-caret-position="476">
+          <caret line="370" column="0" lean-forward="false" selection-start-line="370" selection-start-column="0" selection-end-line="370" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#19#0" expanded="false" />
+            <element signature="e#2504#2964#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spatial_feature_run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sigmoid_mix_feature_run_ly_data.py">
+    <entry file="file://$PROJECT_DIR$/spectral_feature_run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        <state relative-caret-position="72">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/softplus_mix_feature_run_ly_data.py">
+    <entry file="file://$PROJECT_DIR$/softplus_spatial_feature_run_ly_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="90">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/softplus_spectral_feature_run_ly_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="27" selection-end-column="24" />
+        <state relative-caret-position="90">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data.py">
+    <entry file="file://$PROJECT_DIR$/softplus_mix_feature_run_ly_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="370" column="0" lean-forward="false" selection-start-line="370" selection-start-column="0" selection-end-line="370" selection-end-column="0" />
+        <state relative-caret-position="72">
+          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="25" />
           <folding>
-            <element signature="e#1#19#0" expanded="true" />
-            <element signature="e#2504#2964#0" expanded="false" />
+            <element signature="e#0#13#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/softplus_spatial_feature_run_ly_data.py">
+    <entry file="file://$PROJECT_DIR$/sigmoid_spectral_feature_run_ly_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        <state relative-caret-position="72">
+          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sigmoid_mix_feature_run_ly_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="8" column="27" lean-forward="false" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sigmoid_spatial_feature_run_ly_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        <state relative-caret-position="432">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>

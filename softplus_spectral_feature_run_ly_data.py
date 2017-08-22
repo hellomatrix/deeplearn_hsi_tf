@@ -4,7 +4,11 @@ import new_fully_connected_hsi_classfier as fc
 import tensorflow as tf
 from Data import Data
 
-dataname = 'Salinas_origin'
+#dataname = 'Salinas_origin'
+
+#dataname = Config.Salinas17817
+
+dataname = Config.Salinas
 
 trans_function = tf.nn.softplus
 
@@ -23,7 +27,6 @@ if not os.path.exists(pre_train_model_dir):
 
 pd = Data(data_name=dataname)
 data_all = pd.get_block_sampling_ly_all()
-
 
 data_sets =  data_all[0]
 
